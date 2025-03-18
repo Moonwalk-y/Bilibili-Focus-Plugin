@@ -71,4 +71,4 @@ Bilibili-Focus-Plugin是一款专为B站学习内容设计的浏览器扩展，�
 
 ---
 
-*B站大学专注版 - 让每一分钟的学习都更加高效！* 
+*Bilibili-Focus-Plugin  让每一分钟的学习都更加高效！* 
