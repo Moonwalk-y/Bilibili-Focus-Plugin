@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "B站学习助手",
+  "version": "1.0",
+  "description": "帮助在B站专注学习",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "optional_permissions": [
+    "notifications"
+  ],
+  "host_permissions": [
+    "*://*.bilibili.com/*"
+  ],
+  "offline_enabled": true,
+  "content_scripts": [
+    {
+      "matches": ["*://*.bilibili.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ]
+} 

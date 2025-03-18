@@ -1,0 +1,530 @@
+#bilibili-player {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 2147483645 !important;
+    background-color: #000 !important;
+}
+
+.bpx-player-video-wrap video,
+.bilibili-player-video video {
+    object-fit: contain !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* 确保控制栏可见 */
+.bpx-player-control-wrap {
+    opacity: 1 !important;
+    transition: opacity 0.3s !important;
+}
+
+/* 禁用页面滚动 */
+body.fullscreen-mode {
+    overflow: hidden !important;
+    background-color: #000 !important;
+}
+
+/* 隐藏其他元素 */
+body.fullscreen-mode > *:not(#bilibili-player) {
+    display: none !important;
+}
+
+/* 防止页面滚动 */
+body {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* 禁用导航栏和其他可点击元素 */
+.bili-header__bar,
+.nav-tools,
+.video-toolbar,
+.video-info-container,
+.comment-container,
+.right-container,
+.fixed-nav,
+.float-nav {
+    pointer-events: none !important;
+    user-select: none !important;
+}
+
+/* 全局遮罩层样式 */
+.global-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    z-index: 2147483646 !important;
+}
+
+/* 添加模态框遮罩层样式 */
+.modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: transparent !important;
+    z-index: 2147483647 !important;
+    pointer-events: all !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
+/* 确保模态框在最顶层 */
+.password-modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: var(--modal-z-index) !important;
+    background-color: transparent !important;
+}
+
+.password-modal-content {
+    background-color: white !important;
+    padding: 30px !important;
+    border-radius: 8px !important;
+    width: 300px !important;
+    text-align: center !important;
+    position: relative !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 按钮容器样式 */
+.button-container {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    margin: 20px 0 !important;
+}
+
+/* 输入框样式 */
+.password-input {
+    width: calc(100% - 20px) !important;
+    padding: 10px !important;
+    margin: 15px 0 !important;
+    border: 2px solid #ccc !important;
+    border-radius: 4px !important;
+    font-size: 16px !important;
+}
+
+/* 按钮样式 */
+.confirm-btn, .cancel-btn {
+    padding: 8px 20px !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+}
+
+.confirm-btn {
+    background-color: #00a1d6 !important;
+    color: white !important;
+}
+
+.cancel-btn {
+    background-color: #999 !important;
+    color: white !important;
+}
+
+/* 学习统计样式 */
+.study-stats {
+    margin-top: 20px !important;
+    padding: 10px !important;
+    background-color: #f0f9ff !important;
+    border-radius: 4px !important;
+    font-size: 14px !important;
+    color: #00a1d6 !important;
+}
+
+/* 确保模态框内的所有元素都可以交互 */
+.password-modal-content * {
+    pointer-events: auto !important;
+}
+
+/* 确保输入框和按钮可以交互 */
+.password-modal-content input,
+.password-modal-content button {
+    position: relative !important;
+    z-index: 2147483650 !important;
+}
+
+/* 禁用页面其他部分的交互 */
+body.locked > *:not(.password-modal):not(.global-overlay):not(.modal-overlay) {
+    pointer-events: none !important;
+}
+
+/* 禁用所有页面元素的交互 */
+body.locked {
+    pointer-events: none !important;
+}
+
+/* 确保模态框和遮罩层可以接收事件 */
+body.locked .password-modal,
+body.locked .global-overlay {
+    pointer-events: all !important;
+}
+
+/* 当模态框显示时的视频样式 */
+body.locked #bilibili-player {
+    pointer-events: none !important;
+    filter: blur(2px) !important;
+}
+
+/* 强化提醒文字样式 */
+.password-modal p {
+    margin: 10px 0 !important;
+    color: #333 !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+}
+
+/* 禁用页面所有元素 */
+body.locked * {
+    pointer-events: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
+/* 允许模态框内的元素交互 */
+.password-modal,
+.password-modal * {
+    pointer-events: auto !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+
+/* 最终确认对话框样式 */
+.final-confirm-dialog {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    z-index: 2147483647 !important;
+}
+
+.final-confirm-dialog .dialog-content {
+    background-color: white !important;
+    padding: 30px !important;
+    border-radius: 8px !important;
+    width: 400px !important;
+    text-align: left !important;
+}
+
+.final-confirm-dialog h3 {
+    color: #333 !important;
+    margin-bottom: 20px !important;
+    text-align: center !important;
+}
+
+.final-confirm-dialog ul {
+    margin: 20px 0 !important;
+    padding-left: 20px !important;
+}
+
+.final-confirm-dialog li {
+    margin: 10px 0 !important;
+    color: #666 !important;
+}
+
+.final-confirm-dialog .study-time {
+    background-color: #f0f9ff !important;
+    padding: 15px !important;
+    border-radius: 4px !important;
+    margin: 20px 0 !important;
+    text-align: center !important;
+    color: #00a1d6 !important;
+}
+
+.final-confirm-dialog .button-container {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 20px !important;
+    margin-top: 20px !important;
+}
+
+.final-confirm-dialog button {
+    padding: 10px 25px !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+}
+
+.final-confirm-dialog .continue-btn {
+    background-color: #00a1d6 !important;
+    color: white !important;
+}
+
+.final-confirm-dialog .exit-btn {
+    background-color: #ff4d4f !important;
+    color: white !important;
+}
+
+.video-section-list {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+:root {
+    --modal-z-index: 999999;
+    --overlay-z-index: 999998;
+}
+
+/* 选集按钮样式 */
+.playlist-button {
+    position: fixed !important;
+    right: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: rgba(0, 161, 214, 0.8) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    z-index: 2147483646 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.3s ease !important;
+    opacity: 0.7 !important;
+}
+
+.playlist-button:hover {
+    opacity: 1 !important;
+    transform: translateY(-50%) scale(1.1) !important;
+    background: rgba(0, 161, 214, 1) !important;
+    box-shadow: 0 4px 15px rgba(0, 161, 214, 0.4) !important;
+}
+
+.playlist-button:hover::after {
+    content: '选集' !important;
+    position: absolute !important;
+    right: 60px !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    padding: 5px 10px !important;
+    border-radius: 4px !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+    opacity: 0.9 !important;
+}
+
+.playlist-button svg {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+/* 选集面板样式 */
+.playlist-panel {
+    position: fixed !important;
+    right: 80px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: rgba(0, 0, 0, 0.85) !important;
+    border-radius: 8px !important;
+    width: 360px !important;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+    z-index: 2147483646 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+    display: none !important;
+    padding: 16px !important;
+    color: white !important;
+    backdrop-filter: blur(10px) !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.2) !important;
+}
+
+.playlist-panel::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.playlist-panel::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-radius: 3px !important;
+}
+
+.playlist-panel::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 3px !important;
+}
+
+.playlist-panel.show {
+    display: block !important;
+    animation: slideIn 0.3s ease !important;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+.playlist-panel-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 16px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.playlist-panel-title {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #fff !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.playlist-panel-title::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 4px !important;
+    height: 16px !important;
+    background: #00a1d6 !important;
+    margin-right: 8px !important;
+    border-radius: 2px !important;
+}
+
+.playlist-close {
+    background: none !important;
+    border: none !important;
+    color: white !important;
+    cursor: pointer !important;
+    opacity: 0.7 !important;
+    transition: opacity 0.2s !important;
+    width: 24px !important;
+    height: 24px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border-radius: 50% !important;
+}
+
+.playlist-close:hover {
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.playlist-items {
+    max-height: calc(80vh - 60px) !important;
+    overflow-y: auto !important;
+    padding-right: 5px !important;
+    margin-right: -5px !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.2) !important;
+}
+
+.playlist-items::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+.playlist-items::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border-radius: 2px !important;
+}
+
+.playlist-items::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 2px !important;
+}
+
+.playlist-item {
+    display: flex !important;
+    padding: 10px 12px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-bottom: 4px !important;
+}
+
+.playlist-item:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    transform: translateX(2px) !important;
+}
+
+.playlist-item.active {
+    background: rgba(0, 161, 214, 0.4) !important;
+    border-left: 3px solid #00a1d6 !important;
+}
+
+.playlist-item-index {
+    min-width: 28px !important;
+    height: 28px !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    font-size: 13px !important;
+    font-weight: bold !important;
+}
+
+.playlist-item.active .playlist-item-index {
+    background: rgba(0, 161, 214, 0.6) !important;
+}
+
+.playlist-item-title {
+    flex: 1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+}
+
+.playlist-item-duration {
+    font-size: 12px !important;
+    opacity: 0.7 !important;
+    min-width: 40px !important;
+    text-align: right !important;
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 768px) {
+    .playlist-panel {
+        width: 300px !important;
+        right: 60px !important;
+    }
+    
+    .playlist-button {
+        width: 40px !important;
+        height: 40px !important;
+        right: 10px !important;
+    }
+    
+    .playlist-button svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+} 
